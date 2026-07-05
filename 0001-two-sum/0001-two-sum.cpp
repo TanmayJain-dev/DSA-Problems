@@ -1,20 +1,20 @@
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> mp;
-        vector<int> ans;
-        for(int i = 0; i < nums.size(); i++){
-            auto it = mp.find(target - nums[i]);
-            if(it != mp.end()){
-                ans = {i, it->second};
-                return ans;
+class Solution
+{
+    public:
+        vector<int> twoSum(vector<int>& nums, int target)
+        {
+            for (int i = 0; i < nums.size(); i++)
+            {
+                for (int j = 0; j < nums.size(); j++)
+                {
+                    if(nums[j] + nums[i] == target && i != j)
+                    {
+                        return{i,j};
+                    }
+                }
             }
-            else{
-                mp[nums[i]] = i;
-            }
+            return{};
         }
-        return ans;
-    }
 };
 
 // Synced seamlessly with LeetHub Pro
