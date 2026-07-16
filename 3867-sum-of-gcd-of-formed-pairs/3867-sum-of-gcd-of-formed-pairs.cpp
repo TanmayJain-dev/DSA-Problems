@@ -1,31 +1,18 @@
 class Solution {
 public:
-    long long calculateGcdSum(vector<int>& prefixGcd) {
-        int n = prefixGcd.size();
-        sort(prefixGcd.begin(), prefixGcd.end());
-        
-        long long totalSum = 0;
-        int left = 0;
-        int right = n - 1;
-        
-        while (left < right) {
-            totalSum += gcd(prefixGcd[left], prefixGcd[right]);
-            left++;
-            right--;
-        }
-        
-        return totalSum;
-    }
-
     long long gcdSum(vector<int>& nums) {
-        int n = nums.size(),mx = nums[0];
-        vector<int> prefixGcd(n);
-        for (int i = 0; i < n; i++){
-            mx = max(mx, nums[i]);
-            prefixGcd[i] = gcd(nums[i], mx);
+        int mx = nums[0], n = nums.size();
+        long long sum = 0;
+        for (int& num:nums){
+            mx = max(mx, num);
+            num = gcd(num, mx);
         }
+        sort(nums.begin(), nums.end());
 
-        return calculateGcdSum(prefixGcd);
+        for (int l = 0, r = n-1; l < r; l++, r--) {
+            sum += gcd(nums[l], nums[r]);
+        }
+        return sum;
     }
 };
 
