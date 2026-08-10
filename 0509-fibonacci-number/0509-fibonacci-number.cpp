@@ -1,18 +1,10 @@
 class Solution {
 public:
     int fib(int n) {
-        int a = 0, b = 1, c = a + b;
-        if (n == 0) {
-            return a;
-        } else if (n == 1) {
-            return b;
+        if (n == 0 || n == 1){
+            return n;
         }
-        for (int i = 1; i < n; i++) {
-            c = a + b;
-            a = b;
-            b = c;
-        }
-        return c;
+        return fib(n-1) + fib(n-2);
     }
 };
 
